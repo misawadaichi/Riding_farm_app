@@ -1,0 +1,36 @@
+<main role="main">
+
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>ファームの馬たち</h1>
+        <%= link_to '新規追加',new_horse_path, class: 'btn btn-primary my-2' %>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row">
+        <% @horses.each do |horse| %>
+          <div class="card m-2 mx-auto" style="width: 18rem;">
+            <%= image_tag horse.image.url, class: "bd-placeholder-img card-img-top", size: "250" %>
+            <div class="card-body">
+              <h5 class="card-title "><%= horse.name %></h5>
+              <p class="card-text m-1 small">品種：<%= horse.variety %></p>
+              <p class="card-text m-1 small">性別：<%= horse.sex %></p>
+              <p class="card-text m-1 small">毛色：<%= horse.color %></p>
+              <p class="card-text m-1 small">生年月日：<%= horse.birthday.strftime('%Y年%m月%d日') %></p>
+              <p class="card-text m-1 small">競走馬号名：<%= horse.race_name %></p>
+              <p class="card-text m-1 small">入厩日：<%= horse.entry.strftime('%Y年%m月') %></p>
+              <p class="card-text m-1 small"><%= horse.memo %></p>
+            </div>
+            <div class="card-body">
+              <%= link_to '編集', '#', class: 'card-link btn btn-primary' %>
+              <%= link_to '削除', horse_path(horse), class: 'card-link btn btn-primary', method: :delete %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>
