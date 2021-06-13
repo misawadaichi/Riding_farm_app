@@ -25,7 +25,7 @@
               <p class="card-text m-1 small"><%= horse.memo %></p>
             </div>
             <div class="card-body">
-              <%= link_to '編集', '#', class: 'card-link btn btn-primary' %>
+              <%= link_to '編集', edit_horse_path(horse), class: 'card-link btn btn-primary' %>
               <%= link_to '削除', horse_path(horse), class: 'card-link btn btn-primary', method: :delete %>
             </div>
           </div>

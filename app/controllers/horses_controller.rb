@@ -13,16 +13,16 @@ class HorsesController < ApplicationController
       render 'new'
     end
   end
-
-  def edit
   
+  def edit
+    @horse = Horse.find(params[:id])
   end
-
+  
   def update
-    @object = Object.find(params[:id])
-      if @object.update_attributes(params[:object])
-        flash[:success] = "Object was successfully updated"
-        redirect_to @object
+    @horse = Horse.find(params[:id])
+      if @horse.update(horse_params)
+        flash[:success] = "horse was successfully updated"
+        redirect_to horses_path
       else
         flash[:error] = "Something went wrong"
         render 'edit'
@@ -36,7 +36,7 @@ class HorsesController < ApplicationController
   def destroy
     @horse = Horse.find(params[:id])
     if @horse.destroy
-      flash[:success] = 'Object was successfully deleted.'
+      flash[:success] = 'horse was successfully deleted.'
       redirect_to horses_path
     else
       flash[:error] = 'Something went wrong'
@@ -44,9 +44,8 @@ class HorsesController < ApplicationController
     end
   end
 
-private
-
-def horse_params
-  params.require(:horse).permit(:name, :variety, :sex, :color, :race_name, :birthday, :entry, :memo, :image)
-end
+  private
+  def horse_params
+    params.require(:horse).permit(:name, :variety, :sex, :color, :race_name, :birthday, :entry, :memo, :image)
+  end
 end

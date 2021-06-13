@@ -1,5 +1,10 @@
 <div class="container mw-md">
   <%= form_for @horse do |f|%>
+    <% if @horse.image? %>
+    <%= image_tag @horse.image.url %>
+  <% else %>
+    <%= image_tag "/assets/default.png", :size => '100x100' %>
+  <% end %>
     <div class="form-group">
       <label class="control-label">名前</label>
       <%= f.text_field :name, class: "form-control" %>
@@ -39,7 +44,7 @@
       </button>
     </div>
     <div class="form-group">
-      <%= f.submit '登録する', class: 'btn btn-primary btn-lg btn-block' %>
+      <%= f.submit '更新する', class: 'btn btn-primary btn-lg btn-block' %>
     </div>
   <% end %>
 </div>
