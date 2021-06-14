@@ -3,7 +3,7 @@ class MenusController < ApplicationController
     @menu = Menu.new
   end
   def create
-    @menu = Menu.new(params[:menu])
+    @menu = Menu.new(menu_params)
     if @menu.save
       flash[:success] = "Object successfully created"
       redirect_to menus_path
@@ -20,7 +20,7 @@ class MenusController < ApplicationController
   end
   def update
     @menu = Menu.find(params[:id])
-      if @menu.update_attributes(menu_params)
+      if @menu.update(menu_params)
         flash[:success] = "Object was successfully updated"
         redirect_to menus_path
       else

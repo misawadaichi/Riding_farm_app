@@ -1,0 +1,29 @@
+<div class="container mw-md">
+  <%= form_for @menu do |f|%>
+    <div class="form-group">
+      <label class="control-label">タイトル</label>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label  class="control-label">金額</label>
+      <%= f.text_field :money, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label  class="control-label">所要時間</label>
+      <%= f.time_field :time, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label  class="control-label">内容</label>
+      <%= f.text_area :memo, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label  class="control-label">イメージ写真</label><br>
+      <button type="button" class="btn btn-outline-secondary rounded-pill btn-block">
+        <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: 'btn-block'%>
+      </button>
+    </div>
+    <div class="form-group">
+      <%= f.submit '更新する', class: 'btn btn-primary btn-lg btn-block' %>
+    </div>
+  <% end %>
+</div>
