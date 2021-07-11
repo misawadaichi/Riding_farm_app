@@ -29,14 +29,14 @@
                 <%= link_to "ログイン", new_user_session_path, class: 'nav-link' %>
               </li>
             <% end %>
-            <% if current_user.id == 1 %>
+            <% if current_user&.admin? %>
               <li class="nav-item active">
                 <div class="dropdown">
                   <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     管理者機能
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <%= link_to '記事投稿', '#', class: 'dropdown-item' %>
+                    <%= link_to '記事投稿', new_news_path, class: 'dropdown-item' %>
                     <%= link_to '予約日登録', new_admin_reservation_path, class: 'dropdown-item' %>
                   </div>
                 </div>

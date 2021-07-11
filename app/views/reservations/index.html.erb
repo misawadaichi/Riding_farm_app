@@ -1,10 +1,17 @@
-<%= month_calendar events: @reservations do |date, reservations| %>
+<% if current_user.admin? %>
+  <%= link_to '予約日登録', new_admin_reservation_path, class: "btn btn-primary btn-lg btn-block" %>
+<% end %>
+<%= month_calendar events: @reservations do |date, reservation| %>
   <%= date.day %>
-  <div class="container">
-    <% reservations.each do |reservation| %>
+  <div class="container d-flex flex-column">
       <div class="btn-group-vertical">
-        <%= link_to reservation.start_time.strftime('%H:%M'), edit_reservation_path(reservation), class: 'btn btn-outline-primary btn-sm p-0'%>
+        <% if reservation.all?(&:reserved) %>
+          <button type="button" class="btn btn-secondary btn-sm p-0">x</button>
+        <% elsif reservation.select(&:reserved).size >= 3 %>
+          <%= link_to '▲', reservation_path(date), class: 'btn btn-outline-primary btn-sm p-0'%>
+        <% else%>
+          <%= link_to '●', reservation_path(date), class: 'btn btn-outline-primary btn-sm p-0'%>
+        <% end %>
       </div>
-    <% end %>
   <% end %>
 </div>

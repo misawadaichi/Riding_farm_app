@@ -28,6 +28,9 @@ gem 'carrierwave', '~> 2.0'
 #画像のリサイズ
 gem 'mini_magick'
 
+#seed値作成
+gem 'seed-fu'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end

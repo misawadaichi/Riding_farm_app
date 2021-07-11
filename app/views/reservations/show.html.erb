@@ -1,0 +1,21 @@
+<h1><%= params[:start_date] %></h1>
+<% @reservations.each do |reservation| %>
+  <% unless reservation.reserved?%>
+    <div class="card text-center">
+      <div class="card-body">
+        <h5 class="card-title"><%=link_to reservation.start_time.strftime("%H:%M"), edit_reservation_path(reservation), class: "card-text"%></h5>
+      </div>
+      <% if current_user.admin? %>
+        <div class="card-footer text-muted">
+          <%= link_to '削除', '#', class: "btn btn-primary"%>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="card text-center">
+      <div class="card-body">
+        <h5 class="card-title"><%=reservation.start_time.strftime("%H:%M")%>予約済み</h5>
+      </div>
+    </div>
+  <% end %>
+<% end %>
