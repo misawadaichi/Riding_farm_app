@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_13_171628) do
+ActiveRecord::Schema.define(version: 2021_06_29_034226) do
 
   create_table "horses", force: :cascade do |t|
     t.string "name"
@@ -29,21 +29,27 @@ ActiveRecord::Schema.define(version: 2021_06_13_171628) do
   create_table "menus", force: :cascade do |t|
     t.string "title"
     t.integer "money"
-    t.time "time"
+    t.integer "time"
     t.text "memo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
   end
 
-  create_table "reservations", force: :cascade do |t|
-    t.integer "admin_id"
-    t.integer "user_id"
-    t.datetime "start_time"
-    t.datetime "end_time"
+  create_table "news", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["admin_id"], name: "index_reservations_on_admin_id"
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "menu_id"
+    t.datetime "start_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["menu_id"], name: "index_reservations_on_menu_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
@@ -60,6 +66,6 @@ ActiveRecord::Schema.define(version: 2021_06_13_171628) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "reservations", "admins"
+  add_foreign_key "reservations", "menus"
   add_foreign_key "reservations", "users"
 end

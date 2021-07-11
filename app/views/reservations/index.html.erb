@@ -1,3 +1,10 @@
-<%= month_calendar do |date| %>
+<%= month_calendar events: @reservations do |date, reservations| %>
   <%= date.day %>
-<% end %>
+  <div class="container">
+    <% reservations.each do |reservation| %>
+      <div class="btn-group-vertical">
+        <%= link_to reservation.start_time.strftime('%H:%M'), edit_reservation_path(reservation), class: 'btn btn-outline-primary btn-sm p-0'%>
+      </div>
+    <% end %>
+  <% end %>
+</div>

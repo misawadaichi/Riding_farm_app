@@ -10,11 +10,10 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active"><%= link_to '蓼科乗馬ファームとは', '#', class: 'nav-link' %></li>
             <li class="nav-item active"><%= link_to 'ファームの馬たち', horses_path, class: 'nav-link' %></li>
-            <li class="nav-item active"><%= link_to '乗馬メニュー', '#', class: 'nav-link' %></li>
-            <li class="nav-item active"><%= link_to '予約', '#', class: 'nav-link' %></li>
+            <li class="nav-item active"><%= link_to '乗馬メニュー', menus_path, class: 'nav-link' %></li>
+            <li class="nav-item active"><%= link_to '予約', reservations_path, class: 'nav-link' %></li>
             <li class="nav-item active"><%= link_to '外乗を楽しむために', '#', class: 'nav-link' %></li>
             <li class="nav-item active"><%= link_to 'FAQ', '#', class: 'nav-link' %></li>
-            <li class="nav-item active"><%= link_to 'お問い合わせ', '#', class: 'nav-link' %></li>
             <% if user_signed_in? %>
               <li class="nav-item active">
                 <%= link_to 'アカウント編集', edit_user_registration_path, class: 'nav-link' %>
@@ -28,6 +27,19 @@
               </li>
               <li class="nav-item active">
                 <%= link_to "ログイン", new_user_session_path, class: 'nav-link' %>
+              </li>
+            <% end %>
+            <% if current_user.id == 1 %>
+              <li class="nav-item active">
+                <div class="dropdown">
+                  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    管理者機能
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <%= link_to '記事投稿', '#', class: 'dropdown-item' %>
+                    <%= link_to '予約日登録', new_admin_reservation_path, class: 'dropdown-item' %>
+                  </div>
+                </div>
               </li>
             <% end %>
           </ul>

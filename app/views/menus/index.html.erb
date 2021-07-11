@@ -16,12 +16,12 @@
           <div class="card-body bg-light">
             <blockquote class="blockquote mb-0">
             <% if menu.image? %>
-              <%= image_tag menu.image.url, class: "card-img-left mb-3", size: '350x200' %>
+              <%= image_tag menu.image.url, class: "card-img-left mb-3", size: '320x200' %>
             <% else %>
               <%= image_tag "/assets/default.png", :size => '100x100' %>
             <% end %>
               <p class="small text-success"><%= menu.memo %></p>
-              <footer class="blockquote-footer">所要時間： <cite title="Source Title"><%= menu.time.strftime('%M分') %></cite></footer>
+              <footer class="blockquote-footer">所要時間：<cite title="Source Title"><%= menu.time%>分</cite></footer>
             </blockquote>
           </div>
           <div class="card-body">

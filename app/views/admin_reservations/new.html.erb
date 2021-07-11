@@ -1,0 +1,15 @@
+<div class="container mw-md">
+  <%= form_with model: @reservation, url: {controller: 'admin_reservations', action: 'create'} do |f|%>
+    <div class="form-group">
+      <label class="control-label">乗馬メニュー</label>
+      <%= f.date_field :start_time, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label class="control-label">乗馬メニュー</label>
+      <%= f.datetime_select :start_time,{include_blank: true, start_hour: 10, end_hour: 15, discard_minute:true}, {class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <%= f.submit '登録する', class: 'btn btn-primary btn-lg btn-block' %>
+    </div>
+  <% end %>
+</div>
