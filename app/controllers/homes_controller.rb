@@ -1,6 +1,6 @@
 class HomesController < ApplicationController
   def index
-    @news = New.all.order(updated_at: "DESC")
+    @news = News.all
   end
 
   def about
