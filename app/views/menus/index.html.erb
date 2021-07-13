@@ -2,7 +2,9 @@
   <section class="jumbotron text-center">
     <div class="container">
       <h1>乗馬メニュー</h1>
-      <%= link_to '新規追加',new_menu_path, class: 'btn btn-primary my-2' %>
+      <% if user_signed_in? && current_user.admin? %>
+        <%= link_to '新規追加',new_menu_path, class: 'btn btn-primary my-2' %>
+      <% end %>
     </div>
   </section>
   <div class="album py-5 bg-light">
@@ -20,14 +22,16 @@
             <% else %>
               <%= image_tag "/assets/default.png", :size => '100x100' %>
             <% end %>
-              <p class="small text-success"><%= menu.memo %></p>
+              <p class="small text-success"><%= simple_format(menu.memo) %></p>
               <footer class="blockquote-footer">所要時間：<cite title="Source Title"><%= menu.time%>分</cite></footer>
             </blockquote>
           </div>
-          <div class="card-body">
+          <% if user_signed_in? && current_user.admin? %>
+            <div class="card-body">
               <%= link_to '編集', edit_menu_path(menu), class: 'card-link btn btn-primary' %>
               <%= link_to '削除', menu_path(menu), class: 'card-link btn btn-primary', method: :delete %>
             </div>
+          <% end %>
         </div>
         <% end %>
       </div>

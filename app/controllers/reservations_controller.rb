@@ -1,4 +1,5 @@
 class ReservationsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @reservations = Reservation.all
   end
@@ -40,6 +41,11 @@ class ReservationsController < ApplicationController
   private
   def reservation_params
     params.require(:reservation).permit(:menu_id).merge(user_id: current_user.id, reserved: 1)
+  end
+  def move_to_signed_in
+    unless user_signed_in?
+      redirect_to new_user_registration_path
+    end
   end
 
 end

@@ -1,4 +1,4 @@
-<% if current_user.admin? %>
+<% if user_signed_in? && current_user.admin? %>
   <%= link_to '予約日登録', new_admin_reservation_path, class: "btn btn-primary btn-lg btn-block" %>
 <% end %>
 <%= month_calendar events: @reservations do |date, reservation| %>

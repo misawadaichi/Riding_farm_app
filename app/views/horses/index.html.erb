@@ -3,7 +3,9 @@
   <section class="jumbotron text-center">
     <div class="container">
       <h1>ファームの馬たち</h1>
-        <%= link_to '新規追加',new_horse_path, class: 'btn btn-primary my-2' %>
+        <% if user_signed_in? && current_user.admin? %>
+          <%= link_to '新規追加',new_horse_path, class: 'btn btn-primary my-2' %>
+        <% end %>
     </div>
   </section>
 
@@ -24,10 +26,12 @@
               <p class="card-text m-1 small">入厩日：<%= horse.entry.strftime('%Y年%m月') %></p>
               <p class="card-text m-1 small"><%= horse.memo %></p>
             </div>
-            <div class="card-body">
-              <%= link_to '編集', edit_horse_path(horse), class: 'card-link btn btn-primary' %>
-              <%= link_to '削除', horse_path(horse), class: 'card-link btn btn-primary', method: :delete %>
-            </div>
+            <% if user_signed_in? && current_user.admin? %>
+              <div class="card-body">
+                <%= link_to '編集', edit_horse_path(horse), class: 'card-link btn btn-primary' %>
+                <%= link_to '削除', horse_path(horse), class: 'card-link btn btn-primary', method: :delete %>
+              </div>
+            <% end %>
           </div>
         <% end %>
       </div>
