@@ -10,6 +10,7 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'mysql2', '~> 0.5'
 
 # ログイン機能
 gem 'devise'
@@ -39,16 +40,10 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
   gem 'spring'
-  gem 'sqlite3', '~> 1.4'
 end
 
 group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
   gem 'webdrivers'
-end
-
-# 本番環境ではPostgresqlを使う
-group :production do
-  gem 'pg'
 end

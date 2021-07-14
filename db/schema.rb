@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_07_11_072055) do
 
-  create_table "horses", force: :cascade do |t|
+  create_table "horses", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "variety"
     t.string "sex"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_07_11_072055) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "menus", force: :cascade do |t|
+  create_table "menus", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
     t.integer "money"
     t.integer "time"
@@ -36,16 +36,16 @@ ActiveRecord::Schema.define(version: 2021_07_11_072055) do
     t.string "image"
   end
 
-  create_table "news", force: :cascade do |t|
+  create_table "news", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "reservations", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "menu_id"
+  create_table "reservations", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "menu_id"
     t.datetime "start_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2021_07_11_072055) do
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
